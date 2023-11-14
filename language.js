@@ -6,10 +6,15 @@ document.getElementById("languageSelect").addEventListener("change", function() 
 function changeLanguage(lang) {
     fetch(`translate/translate_${lang}.json`)
         .then(response => response.json())
-        .then(data => updateContent(data));
+        .then(data => {
+            updateContent(data);
+            localStorage.setItem('selectedLanguage', lang);
+        });
 }
 
 function updateContent(data) {
     const contentElement = document.getElementById("content");
     contentElement.textContent = data.content;
+
+    // add here ur content for multilang
 }
